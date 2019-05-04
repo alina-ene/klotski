@@ -5,25 +5,15 @@
 //  Created by Alina Ene on 30/04/2019.
 //  Copyright © 2019 Alina Ene. All rights reserved.
 //
-
 import Foundation
-
-enum Direction: Int {
-    case left = 0
-    case right = 1
-    case up = 2
-    case down = 4
-}
 
 final class AI {
     static let shared = AI()
     
-    var types: [[PieceType]] = Array(repeating: Array(repeating: .none, count: 4), count: 5)
-    var boards: [[Int]] = Array(repeating: Array(repeating: -1, count: 4), count: 5)
+    private var types: [[PieceType]] = Array(repeating: Array(repeating: .none, count: 4), count: 5)
+    private var boards: [[Int]] = Array(repeating: Array(repeating: -1, count: 4), count: 5)
+    private var layoutWasVisited: [String: Bool] = [:]
     
-    var layoutWasVisited: [String: Bool] = [:]
-    
-    var depths: [String: Int] = [:]
     var st: [String: Int] = [:]
     var ts: [Int: String] = [:]
     
@@ -33,13 +23,12 @@ final class AI {
     var stringQueue = Queue<String>()
     var layoutsVisitedCount: Int = 0
     var code: String = ""
-    var pieces: [Piece] = {
-        return DataManager.shared.pieces
-    }()
+    private var pieces: [Piece] = DataManager.shared.pieces
     var backtrackCoords: [[(Int, Int)]] = []
     
     func initBoard() {
         code = ""
+        pieces = DataManager.shared.pieces
         for piece in pieces {
             setCoordinates(piece: piece)
         }
@@ -53,12 +42,11 @@ final class AI {
         for i in y..<(y + h) {
             for j in x..<(x + w) {
                 if i < 5 && j < 4 {
-                types[i][j] = piece.type
-                boards[i][j] = piece.id
+                    types[i][j] = piece.type
+                    boards[i][j] = piece.id
                 }
             }
         }
-        
     }
     
     func encode() {
@@ -115,7 +103,7 @@ final class AI {
                 c += 1
             }
         }
-
+        
     }
     
     var didFinishTraversal: Bool {
@@ -126,7 +114,6 @@ final class AI {
     func updateCurrent(subLayout: String, currentLayout: String) {
         stringQueue.enqueue(subLayout)
         layoutWasVisited[subLayout] = true
-        depths[subLayout] = depths[currentLayout]! + 1
         ts[layoutsVisitedCount] = subLayout
         boardCodes[layoutsVisitedCount] = code
         st[subLayout] = layoutsVisitedCount
@@ -270,7 +257,6 @@ final class AI {
         backtrackCoords.removeAll()
         ts.removeAll()
         boardCodes.removeAll()
-        depths.removeAll()
         layoutWasVisited.removeAll()
         st.removeAll()
         layoutsVisitedCount = 0
@@ -282,7 +268,6 @@ final class AI {
         
         stringQueue.enqueue(stateCode)
         layoutWasVisited[stateCode] = true
-        depths[stateCode] = 0
         ts[layoutsVisitedCount] = stateCode
         boardCodes[layoutsVisitedCount] = code
         
