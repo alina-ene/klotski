@@ -84,13 +84,13 @@ final class AI {
                     size = (w: 1, h: 1)
                 case "2":
                     size = (w: 1, h: 2)
-                    stateCode = stateCode.replace(StringAtIndex: c+4, with: "@")
+                    stateCode = stateCode.replaceString(at: c + 4, with: "@")
                 case "3":
                     size = (w: 2, h: 1)
-                    stateCode = stateCode.replace(StringAtIndex: c+1, with: "@")
+                    stateCode = stateCode.replaceString(at: c + 1, with: "@")
                 case "4":
                     size = (w: 2, h: 2)
-                    stateCode = stateCode.replace(StringAtIndex: c+1, with: "@").replace(StringAtIndex: c+4, with: "@").replace(StringAtIndex: c+5, with: "@")
+                    stateCode = stateCode.replaceString(at: c + 1, with: "@").replaceString(at: c + 4, with: "@").replaceString(at: c + 5, with: "@")
                 default:
                     break
                 }
@@ -106,7 +106,7 @@ final class AI {
         
     }
     
-    var didFinishTraversal: Bool {
+    private var didFinishTraversal: Bool {
         return (types[3][1].rawValue == types[3][2].rawValue && types[3][2].rawValue == types[4][1].rawValue &&
             types[4][1].rawValue == types[4][2].rawValue && types[4][1] == .bigSquare)
     }
@@ -121,7 +121,7 @@ final class AI {
         parents[st[subLayout]!] = st[currentLayout]!
     }
     
-    func move(piece: Piece, currentLayout: String, direction: Direction, and completion: (String) -> ()) -> Bool {
+    private func move(piece: Piece, currentLayout: String, direction: Direction, and completion: (String) -> ()) -> Bool {
         
         if !go(direction: direction, for: piece) {
             return false
@@ -150,7 +150,7 @@ final class AI {
     }
     
     @discardableResult
-    func go(direction: Direction, for piece: Piece) -> Bool {
+    private func go(direction: Direction, for piece: Piece) -> Bool {
         if !canGo(direction, for: piece) { return false }
         
         let y = piece.coord.y
@@ -300,12 +300,7 @@ final class AI {
         }
     }
     
-}
-
-
-extension AI {
-    
-    func decode(string: String) {
+    private func decode(string: String) {
         var fooArr = Array(repeating: (-1, -1), count: 10)
         for index in 0..<string.count {
             
@@ -332,23 +327,4 @@ extension AI {
         recursivelyDecode(layout: ts[parents[st[layout]!]]!)
         return []
     }
-}
-
-extension String {
-    
-    subscript(idx: Int) -> String {
-        guard let strIdx = index(startIndex, offsetBy: idx, limitedBy: endIndex)
-            else { fatalError("String index out of bounds") }
-        return "\(self[strIdx])"
-    }
-    
-    
-    func replace(StringAtIndex: Int, with newChar: Character) -> String {
-        var modifiedString = ""
-        for (i, char) in self.enumerated() {
-            modifiedString += String((i == StringAtIndex) ? newChar : char)
-        }
-        return modifiedString
-    }
-    
 }
