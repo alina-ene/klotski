@@ -9,6 +9,7 @@ import UIKit
 
 protocol PiecesViewDelegate: class {
     func didFinishAnimation()
+    func didFindPath(_ path: String)
 }
 
 class PiecesView: UIView {
@@ -94,6 +95,7 @@ class PiecesView: UIView {
         for view in viewsArray {
             addSubview(view)
         }
+        AI.shared.delegate = self
     }
     
     private let pieces: [Piece] = DataManager.shared.pieces
@@ -124,32 +126,30 @@ class PiecesView: UIView {
     
     @objc func play() {
         stepIndex = 0
+        
         AI.shared.search { stateLayout in
+            delegate?.didFindPath(stateLayout)
             AI.shared.recursivelyDecode(layout: stateLayout)
-            automaticallyStepIn()
+            performStep(index: 0)
         }
     }
     
-    func automaticallyStepIn() {
-        timer?.invalidate()
-        timer = nil
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self,selector: #selector(performStep), userInfo: nil, repeats:true)
-    }
-    
-    @objc func performStep() {
-        if stepIndex == AI.shared.backtrackCoords.count || AI.shared.backtrackCoords.isEmpty {
+    func performStep(index: Int) {
+        if index == AI.shared.backtrackCoords.count || AI.shared.backtrackCoords.isEmpty {
             delegate?.didFinishAnimation()
             return
         }
         
-        for (index, coord) in AI.shared.backtrackCoords[stepIndex].enumerated() {
-            pieces[index].coord = coord
+        for (i, coord) in AI.shared.backtrackCoords[index].enumerated() {
+            pieces[i].coord = coord
         }
         for piece in pieces {
             print(piece.coord, terminator: ", ")
         }
         displayAnimations()
-        stepIndex += 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.performStep(index: index + 1)
+        }
     }
     
     private func displayAnimations() {
@@ -172,4 +172,10 @@ class PiecesView: UIView {
         return CGPoint(x: x * unit + sideMargin, y: y * unit + sideMargin)
     }
     
+}
+
+extension PiecesView: AIDelegate {
+    func didProgress(board: String) {
+        delegate?.didFindPath(board)
+    }
 }

@@ -7,9 +7,13 @@
 //
 import Foundation
 
+protocol AIDelegate: class {
+    func didProgress(board: String)
+}
+
 final class AI {
     static let shared = AI()
-    
+    weak var delegate: AIDelegate?
     private var types: [[PieceType]] = Array(repeating: Array(repeating: .none, count: 4), count: 5)
     private var boards: [[Int]] = Array(repeating: Array(repeating: -1, count: 4), count: 5)
     private var layoutWasVisited: [String: Bool] = [:]
@@ -131,6 +135,7 @@ final class AI {
         if layoutWasVisited[stateLayout] == nil {
             updateCurrent(subLayout: stateLayout, currentLayout: currentLayout)
             print(stateLayout)
+            delegate?.didProgress(board: stateLayout)
             if didFinishTraversal {
                 completion(stateLayout)
                 return true

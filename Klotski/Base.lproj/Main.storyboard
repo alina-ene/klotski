@@ -33,13 +33,29 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jt3-uB-naj" customClass="PiecesView" customModule="Klotski" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="134" width="1112" height="656"/>
+                                <rect key="frame" x="0.0" y="134" width="1112" height="700"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYb-Vz-yDn">
+                                        <rect key="frame" x="0.0" y="629" width="1112" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="QQa-7W-YEa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ZYb-Vz-yDn" firstAttribute="leading" secondItem="jt3-uB-naj" secondAttribute="leading" id="MHT-yN-blC"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZYb-Vz-yDn" secondAttribute="bottom" constant="50" id="Yr1-lH-28l"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZYb-Vz-yDn" secondAttribute="trailing" id="aFp-nP-zf0"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="jt3-uB-naj" secondAttribute="bottom" constant="10" id="3U1-mz-uRe"/>
+                            <constraint firstAttribute="bottom" secondItem="jt3-uB-naj" secondAttribute="bottom" id="3U1-mz-uRe"/>
                             <constraint firstItem="p3g-8E-6HB" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" id="3oi-64-inr"/>
                             <constraint firstItem="wDN-vO-cYu" firstAttribute="leading" secondItem="KoM-ue-1BR" secondAttribute="leading" id="Alf-tG-Kpg"/>
                             <constraint firstItem="KoM-ue-1BR" firstAttribute="trailing" secondItem="wDN-vO-cYu" secondAttribute="trailing" id="BtD-eE-lwX"/>
@@ -57,6 +73,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="wDN-vO-cYu" id="uhi-kp-SRt"/>
                         <outlet property="buttonsStackView" destination="p3g-8E-6HB" id="hR0-be-14c"/>
+                        <outlet property="outputLabel" destination="ZYb-Vz-yDn" id="C4c-F6-FgW"/>
                         <outlet property="piecesView" destination="jt3-uB-naj" id="EfD-2B-Zbc"/>
                     </connections>
                 </viewController>
