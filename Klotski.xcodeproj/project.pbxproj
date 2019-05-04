@@ -14,6 +14,9 @@
 		AC1F306A2277A72600903A12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC1F30682277A72600903A12 /* LaunchScreen.storyboard */; };
 		AC54540F227E192400E90C36 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54540E227E192400E90C36 /* Direction.swift */; };
 		AC545411227E215300E90C36 /* String+Subscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545410227E215300E90C36 /* String+Subscripts.swift */; };
+		AC545413227E241B00E90C36 /* PieceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545412227E241B00E90C36 /* PieceType.swift */; };
+		AC545415227E3DC500E90C36 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545414227E3DC500E90C36 /* Coordinates.swift */; };
+		AC545417227E3E2800E90C36 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545416227E3E2800E90C36 /* Size.swift */; };
 		ACA717452278C4A800B706D5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA717442278C4A800B706D5 /* DataManager.swift */; };
 		ACA717472278C4DE00B706D5 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA717462278C4DE00B706D5 /* Piece.swift */; };
 		ACA717492278C5E200B706D5 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA717482278C5E200B706D5 /* LinkedList.swift */; };
@@ -32,6 +35,9 @@
 		AC1F306B2277A72600903A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC54540E227E192400E90C36 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		AC545410227E215300E90C36 /* String+Subscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscripts.swift"; sourceTree = "<group>"; };
+		AC545412227E241B00E90C36 /* PieceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceType.swift; sourceTree = "<group>"; };
+		AC545414227E3DC500E90C36 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		AC545416227E3E2800E90C36 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		ACA717442278C4A800B706D5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		ACA717462278C4DE00B706D5 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		ACA717482278C5E200B706D5 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
@@ -74,6 +80,9 @@
 				AC1F30612277A72400903A12 /* ViewController.swift */,
 				ACA717442278C4A800B706D5 /* DataManager.swift */,
 				ACA717462278C4DE00B706D5 /* Piece.swift */,
+				AC545414227E3DC500E90C36 /* Coordinates.swift */,
+				AC545416227E3E2800E90C36 /* Size.swift */,
+				AC545412227E241B00E90C36 /* PieceType.swift */,
 				ACA717482278C5E200B706D5 /* LinkedList.swift */,
 				ACA7174A2278C66200B706D5 /* Queue.swift */,
 				ACA7174C2278C7B900B706D5 /* PiecesView.swift */,
@@ -162,13 +171,16 @@
 				AC545411227E215300E90C36 /* String+Subscripts.swift in Sources */,
 				ACA717472278C4DE00B706D5 /* Piece.swift in Sources */,
 				ACA7174B2278C66200B706D5 /* Queue.swift in Sources */,
+				AC545415227E3DC500E90C36 /* Coordinates.swift in Sources */,
 				AC1F30622277A72400903A12 /* ViewController.swift in Sources */,
 				ACA717492278C5E200B706D5 /* LinkedList.swift in Sources */,
 				ACA717452278C4A800B706D5 /* DataManager.swift in Sources */,
+				AC545413227E241B00E90C36 /* PieceType.swift in Sources */,
 				ACA7174F2278C7F500B706D5 /* AI.swift in Sources */,
 				ACA7174D2278C7B900B706D5 /* PiecesView.swift in Sources */,
 				AC1F30602277A72400903A12 /* AppDelegate.swift in Sources */,
 				AC54540F227E192400E90C36 /* Direction.swift in Sources */,
+				AC545417227E3E2800E90C36 /* Size.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,22 +6,14 @@
 //  Copyright © 2019 Alina Ene. All rights reserved.
 //
 
-enum PieceType: Int {
-    case horizontal = 3
-    case vertical = 2
-    case bigSquare = 4
-    case tinySquare = 1
-    case none = 0
-}
-
 class Piece {
     
-    var coord: (x: Int, y: Int) = (-1, -1)
-    var size: (w: Int, h: Int) = (0, 0)
+    var coord: Coordinates = DataManager.cNone
+    var size: Size = DataManager.size00
     var id: Int
     
     var type: PieceType {
-        switch size {
+        switch (size.w, size.h) {
         case (1, 1):
             return .tinySquare
         case (1, 2):
@@ -35,7 +27,7 @@ class Piece {
         }
     }
     
-    init(id: Int, size: (w: Int, h: Int)) {
+    init(id: Int, size: Size) {
         self.size = size
         self.id = id
     }

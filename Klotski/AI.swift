@@ -24,7 +24,7 @@ final class AI {
     var layoutsVisitedCount: Int = 0
     var code: String = ""
     private var pieces: [Piece] = DataManager.shared.pieces
-    var backtrackCoords: [[(Int, Int)]] = []
+    var backtrackCoords: [[Coordinates]] = []
     
     func initBoard() {
         code = ""
@@ -69,8 +69,8 @@ final class AI {
         return code
     }
     
-    func setCurrentBoardFrom(_ stringValue: String) {
-        var stateCode = currentStateCodeFrom(stringValue)
+    func setCurrentBoardFrom(_ string: String) {
+        var stateCode = currentStateCodeFrom(string)
         types = Array(repeating: Array(repeating: .none, count: 4), count: 5)
         boards = Array(repeating: Array(repeating: -1, count: 4), count: 5)
         
@@ -78,25 +78,25 @@ final class AI {
         var c = 0
         for i in 0..<DataManager.boardHeight {
             for j in 0..<DataManager.boardWidth {
-                var size: (Int, Int)?
+                var size: Size?
                 switch stateCode[c] {
                 case "1":
-                    size = (w: 1, h: 1)
+                    size = DataManager.size11
                 case "2":
-                    size = (w: 1, h: 2)
+                    size = DataManager.size12
                     stateCode = stateCode.replaceString(at: c + 4, with: "@")
                 case "3":
-                    size = (w: 2, h: 1)
+                    size = DataManager.size21
                     stateCode = stateCode.replaceString(at: c + 1, with: "@")
                 case "4":
-                    size = (w: 2, h: 2)
+                    size = DataManager.size22
                     stateCode = stateCode.replaceString(at: c + 1, with: "@").replaceString(at: c + 4, with: "@").replaceString(at: c + 5, with: "@")
                 default:
                     break
                 }
                 if let s = size {
-                    pieces[b] = Piece(id: Int(stringValue[2*c + 1])!, size: s)
-                    pieces[b].coord = (j, i)
+                    pieces[b] = Piece(id: Int(string[2 * c + 1])!, size: s)
+                    pieces[b].coord = Coordinates(x: j, y: i)
                     setCoordinates(piece: pieces[b])
                     b += 1
                 }
@@ -107,8 +107,8 @@ final class AI {
     }
     
     private var didFinishTraversal: Bool {
-        return (types[3][1].rawValue == types[3][2].rawValue && types[3][2].rawValue == types[4][1].rawValue &&
-            types[4][1].rawValue == types[4][2].rawValue && types[4][1] == .bigSquare)
+        return (types[3][1] == types[3][2] && types[3][2] == types[4][1] &&
+            types[4][1] == types[4][2] && types[4][1] == .bigSquare)
     }
     
     func updateCurrent(subLayout: String, currentLayout: String) {
@@ -301,15 +301,13 @@ final class AI {
     }
     
     private func decode(string: String) {
-        var fooArr = Array(repeating: (-1, -1), count: 10)
+        var fooArr = Array(repeating: DataManager.cNone, count: 10)
         for index in 0..<string.count {
-            
             if index % 2 == 0 {
-                
                 let cursor = Int(string[index + 1])!
-                if string[index] != "0" && fooArr[cursor].0 == -1 && fooArr[cursor].1 == -1 {
-                    fooArr[cursor].0 = (index / 2) % 4
-                    fooArr[cursor].1 = (index / 2 - fooArr[cursor].0) / 4
+                if string[index] != "0" && fooArr[cursor] == DataManager.cNone {
+                    let x = (index / 2) % 4
+                    fooArr[cursor] = Coordinates(x: x, y: (index / 2 - x) / 4)
                 }
             }
         }
@@ -317,7 +315,7 @@ final class AI {
     }
     
     @discardableResult
-    func recursivelyDecode(layout: String) -> [[(Int, Int)]] {
+    func recursivelyDecode(layout: String) -> [[Coordinates]] {
         if st[layout] == 0 {
             decode(string: boardCodes[st[layout]!]!)
             backtrackCoords = backtrackCoords.reversed()

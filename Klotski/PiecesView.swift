@@ -99,7 +99,7 @@ class PiecesView: UIView {
     private let pieces: [Piece] = DataManager.shared.pieces
     
     
-    private func size(_ size: (w: Int, h: Int)) -> CGSize {
+    private func size(_ size: Size) -> CGSize {
         let w = CGFloat(size.w)
         let h = CGFloat(size.h)
         return CGSize(width: w * unit, height: h * unit)
@@ -166,7 +166,7 @@ class PiecesView: UIView {
         }
     }
     
-    private func origin(coord: (x: Int, y: Int)) -> CGPoint {
+    private func origin(coord: Coordinates) -> CGPoint {
         let y = CGFloat(coord.y)
         let x = CGFloat(coord.x)
         return CGPoint(x: x * unit + sideMargin, y: y * unit + sideMargin)
