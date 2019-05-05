@@ -6,18 +6,18 @@
 //  Copyright © 2019 Alina Ene. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol DataManagerInjector {
     var dataManager: DataManager { get }
 }
+
 private let sharedAppDataManager: DataManager = DataManager()
 extension DataManagerInjector {
     var dataManager: DataManager {
         return sharedAppDataManager
     }
 }
-
 
 class DataManager {
     
@@ -55,7 +55,7 @@ class DataManager {
         [c11, c13, c30, c00, c32, c03, c10, c20, c02, c34],
         [c00, c02, c30, c20, c13, c03, c22, c32, c23, c33]
         ]}()
-//    static let shared = DataManager()
+
     private(set) var pieces: [Piece] = [
         Piece(id: 1, size: size22),
         Piece(id: 4, size: size21),
@@ -67,8 +67,6 @@ class DataManager {
         Piece(id: 6, size: size11),
         Piece(id: 8, size: size11),
         Piece(id: 9, size: size11)]
-//    private init() {
-//    }
     
     var scenario: Int = 1 {
         didSet {
@@ -77,5 +75,7 @@ class DataManager {
             }
         }
     }
+    
+    var colours: [UIColor] = [.blue, .red, .yellow, .green, .cyan, .gray, .purple, .magenta, .lightGray, .orange]
     
 }

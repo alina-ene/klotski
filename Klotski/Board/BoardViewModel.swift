@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alina Ene. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class BoardViewModel: BoardViewLoadable, DataManagerInjector {
     
@@ -38,5 +38,9 @@ class BoardViewModel: BoardViewLoadable, DataManagerInjector {
     
     var pieces: [Piece] {
         return dataManager.pieces
+    }
+    
+    var colours: [UIColor] {
+        return dataManager.colours
     }
 }

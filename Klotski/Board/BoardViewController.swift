@@ -19,8 +19,7 @@ class BoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        piecesView.load()
-        piecesView.pieces = viewModel.pieces
+        piecesView.load(pieces: viewModel.pieces, colours: viewModel.colours)
         piecesView.delegate = self
         loadControlPanel()
         activityIndicatorView.backgroundColor = UIColor.gray.withAlphaComponent(0.4)

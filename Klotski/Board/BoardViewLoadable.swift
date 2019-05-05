@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alina Ene. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol BoardViewLoadable {
     var playButtonTitle: String { get }
@@ -16,4 +16,5 @@ protocol BoardViewLoadable {
     func tapPlayButton()
     var view: BoardViewLoading? { get set }
     var pieces: [Piece] { get }
+    var colours: [UIColor] { get }
 }

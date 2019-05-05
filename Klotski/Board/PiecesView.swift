@@ -24,7 +24,7 @@ class PiecesView: UIView {
     private var unit: CGFloat {
         return availableWidth < availableHeight ? availableWidth/CGFloat(DataManager.boardWidth) : availableHeight/CGFloat(DataManager.boardHeight)
     }
-    
+
     private lazy var bigPieceView = UIView()
     private lazy var horizontalView = UIView()
     private lazy var vertical2View = UIView()
@@ -36,26 +36,15 @@ class PiecesView: UIView {
     private lazy var square3View = UIView()
     private lazy var square4View = UIView()
     
-    private var viewsArray: [UIView] = []
-    var pieces: [Piece] = [] {
-        didSet {
-            updatePieces()
-        }
-    }
+    private var views: [UIView] = []
+    private var pieces: [Piece] = [] 
     
-    func load() {
-        bigPieceView.backgroundColor = .blue
-        horizontalView.backgroundColor = .yellow
-        vertical2View.backgroundColor = .green
-        vertical3View.backgroundColor = .cyan
-        vertical4View.backgroundColor = .red
-        vertical1View.backgroundColor = .purple
-        square1View.backgroundColor = .magenta
-        square2View.backgroundColor = .orange
-        square3View.backgroundColor = .brown
-        square4View.backgroundColor = .lightGray
-        viewsArray = [vertical1View, bigPieceView, vertical2View, vertical3View, horizontalView, square1View, square2View, vertical4View, square3View, square4View]
-        for view in viewsArray {
+    func load(pieces: [Piece], colours: [UIColor]) {
+        self.pieces = pieces
+        
+        views = [vertical1View, bigPieceView, vertical2View, vertical3View, horizontalView, square1View, square2View, vertical4View, square3View, square4View]
+        for (index, view) in views.enumerated() {
+            view.backgroundColor = colours[index]
             addSubview(view)
         }
     }
@@ -102,7 +91,7 @@ class PiecesView: UIView {
     }
     
     private func displayAnimations() {
-        for (index, view) in viewsArray.enumerated() {
+        for (index, view) in views.enumerated() {
             let piece = pieces[index]
             let dest = origin(coord: piece.coord)
             if view.frame.origin != dest {
