@@ -9,7 +9,6 @@ import UIKit
 
 protocol PiecesViewDelegate: class {
     func didFinishAnimation()
-    func didFindPath(_ path: String)
 }
 
 class PiecesView: UIView {
@@ -19,9 +18,11 @@ class PiecesView: UIView {
     private var availableWidth: CGFloat {
         return UIScreen.main.bounds.width - 2 * sideMargin
     }
-    private let availableHeight = UIScreen.main.bounds.height - 130
+    private var availableHeight: CGFloat = {
+        return UIScreen.main.bounds.height - 180
+    }()
     private var unit: CGFloat {
-        return availableWidth < availableHeight ? availableWidth/4 : availableHeight/4
+        return availableWidth < availableHeight ? availableWidth/CGFloat(DataManager.boardWidth) : availableHeight/CGFloat(DataManager.boardHeight)
     }
     
     private lazy var bigPieceView: UIView = {
@@ -86,8 +87,6 @@ class PiecesView: UIView {
     
     var viewsArray: [UIView] = []
     
-    var stepIndex = 0
-    
     var timer: Timer?
     
     func load() {
@@ -95,7 +94,6 @@ class PiecesView: UIView {
         for view in viewsArray {
             addSubview(view)
         }
-        AI.shared.delegate = self
     }
     
     private let pieces: [Piece] = DataManager.shared.pieces
@@ -125,16 +123,13 @@ class PiecesView: UIView {
     }
     
     @objc func play() {
-        stepIndex = 0
-        
         AI.shared.search { stateLayout in
-            delegate?.didFindPath(stateLayout)
             AI.shared.recursivelyDecode(layout: stateLayout)
-            performStep(index: 0)
+            performStep(0)
         }
     }
     
-    func performStep(index: Int) {
+    func performStep(_ index: Int) {
         if index == AI.shared.backtrackCoords.count || AI.shared.backtrackCoords.isEmpty {
             delegate?.didFinishAnimation()
             return
@@ -148,7 +143,7 @@ class PiecesView: UIView {
         }
         displayAnimations()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            self.performStep(index: index + 1)
+            self.performStep(index + 1)
         }
     }
     
@@ -172,10 +167,4 @@ class PiecesView: UIView {
         return CGPoint(x: x * unit + sideMargin, y: y * unit + sideMargin)
     }
     
-}
-
-extension PiecesView: AIDelegate {
-    func didProgress(board: String) {
-        delegate?.didFindPath(board)
-    }
 }

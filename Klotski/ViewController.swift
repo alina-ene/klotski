@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet private var piecesView: PiecesView!
     @IBOutlet private var buttonsStackView: UIStackView!
     @IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet private var outputLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +76,6 @@ class ViewController: UIViewController {
             button.setTitleColor(.black, for: .normal)
         }
     }
-    
 }
 
 extension ViewController: PiecesViewDelegate {
@@ -85,9 +83,5 @@ extension ViewController: PiecesViewDelegate {
     func didFinishAnimation() {
         view.sendSubviewToBack(activityIndicatorView)
         activityIndicatorView.stopAnimating()
-    }
-    
-    func didFindPath(_ path: String) {
-        outputLabel.text = path
     }
 }
