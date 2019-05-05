@@ -123,19 +123,19 @@ class PiecesView: UIView {
     }
     
     @objc func play() {
-        AI.shared.search { stateLayout in
-            AI.shared.recursivelyDecode(layout: stateLayout)
+        Puzzle.shared.search { stateLayout in
+            Puzzle.shared.recursivelyDecode(layout: stateLayout)
             performStep(0)
         }
     }
     
     func performStep(_ index: Int) {
-        if index == AI.shared.backtrackCoords.count || AI.shared.backtrackCoords.isEmpty {
+        if index == Puzzle.shared.backtrackCoords.count || Puzzle.shared.backtrackCoords.isEmpty {
             delegate?.didFinishAnimation()
             return
         }
         
-        for (i, coord) in AI.shared.backtrackCoords[index].enumerated() {
+        for (i, coord) in Puzzle.shared.backtrackCoords[index].enumerated() {
             pieces[i].coord = coord
         }
         for piece in pieces {
