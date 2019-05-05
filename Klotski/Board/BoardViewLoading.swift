@@ -11,4 +11,5 @@ import Foundation
 protocol BoardViewLoading {
     func updateSelection(scenario: Int)
     func startPuzzle()
+    func displayPermutations()
 }

@@ -100,8 +100,9 @@ extension BoardViewController: BoardViewLoading {
     
     func startPuzzle() {
         showLoading(true)
-        DispatchQueue.main.async {
-            self.piecesView.play()
-        }
+    }
+    
+    func displayPermutations() {
+        piecesView.performStep(0)
     }
 }

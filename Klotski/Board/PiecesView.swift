@@ -87,8 +87,6 @@ class PiecesView: UIView {
     
     var viewsArray: [UIView] = []
     
-    var timer: Timer?
-    
     func load() {
         viewsArray = [vertical1View, bigPieceView, vertical2View, vertical3View, horizontalView, square1View, square2View, vertical4View, square3View, square4View]
         for view in viewsArray {
@@ -97,7 +95,6 @@ class PiecesView: UIView {
     }
     
     private let pieces: [Piece] = DataManager.shared.pieces
-    
     
     private func size(_ size: Size) -> CGSize {
         let w = CGFloat(size.w)
@@ -120,13 +117,6 @@ class PiecesView: UIView {
         square2View.frame = frame(piece: pieces[7])
         square3View.frame = frame(piece: pieces[8])
         square4View.frame = frame(piece: pieces[9])
-    }
-    
-    @objc func play() {
-        Puzzle.shared.search { stateLayout in
-            Puzzle.shared.recursivelyDecode(layout: stateLayout)
-            performStep(0)
-        }
     }
     
     func performStep(_ index: Int) {

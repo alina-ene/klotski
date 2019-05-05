@@ -23,5 +23,11 @@ class BoardViewModel: BoardLoadable {
     
     func tapPlayButton() {
         view?.startPuzzle()
+        DispatchQueue.main.async {
+            Puzzle.shared.search { stateLayout in
+                Puzzle.shared.recursivelyDecode(layout: stateLayout)
+                self.view?.displayPermutations()
+            }
+        }
     }
 }
