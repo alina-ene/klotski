@@ -14,7 +14,7 @@ class BoardViewController: UIViewController {
     @IBOutlet private var buttonsStackView: UIStackView!
     @IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
     
-    var viewModel: BoardLoadable!
+    var viewModel: BoardViewLoadable!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class BoardViewController: UIViewController {
         buttonsStackView.addArrangedSubview(playButton)
         setButtons(count: viewModel.scenariosCount)
         buttonsStackView.distribution = .fillProportionally
-        if let selectedButton = buttonsStackView.subviews[viewModel.defaultScenario] as? UIButton {
+        if let selectedButton = buttonsStackView.subviews[viewModel.currentScenario] as? UIButton {
             setScenario(button: selectedButton)
         }
     }

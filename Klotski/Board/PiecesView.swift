@@ -25,76 +25,36 @@ class PiecesView: UIView {
         return availableWidth < availableHeight ? availableWidth/CGFloat(DataManager.boardWidth) : availableHeight/CGFloat(DataManager.boardHeight)
     }
     
-    private lazy var bigPieceView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .blue
-        return view
-    }()
+    private lazy var bigPieceView = UIView()
+    private lazy var horizontalView = UIView()
+    private lazy var vertical2View = UIView()
+    private lazy var vertical3View = UIView()
+    private lazy var vertical4View = UIView()
+    private lazy var vertical1View = UIView()
+    private lazy var square1View = UIView()
+    private lazy var square2View = UIView()
+    private lazy var square3View = UIView()
+    private lazy var square4View = UIView()
     
-    private lazy var horizontalView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .yellow
-        return view
-    }()
-    
-    private lazy var vertical2View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .green
-        return view
-    }()
-    
-    private lazy var vertical3View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .cyan
-        return view
-    }()
-    
-    private lazy var vertical4View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        return view
-    }()
-    
-    private lazy var vertical1View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .purple
-        return view
-    }()
-    
-    private lazy var square1View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .magenta
-        return view
-    }()
-    
-    private lazy var square2View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orange
-        return view
-    }()
-    
-    private lazy var square3View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .brown
-        return view
-    }()
-    
-    private lazy var square4View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        return view
-    }()
-    
-    var viewsArray: [UIView] = []
+    private var viewsArray: [UIView] = []
+    private let pieces: [Piece] = DataManager.shared.pieces
     
     func load() {
+        bigPieceView.backgroundColor = .blue
+        horizontalView.backgroundColor = .yellow
+        vertical2View.backgroundColor = .green
+        vertical3View.backgroundColor = .cyan
+        vertical4View.backgroundColor = .red
+        vertical1View.backgroundColor = .purple
+        square1View.backgroundColor = .magenta
+        square2View.backgroundColor = .orange
+        square3View.backgroundColor = .brown
+        square4View.backgroundColor = .lightGray
         viewsArray = [vertical1View, bigPieceView, vertical2View, vertical3View, horizontalView, square1View, square2View, vertical4View, square3View, square4View]
         for view in viewsArray {
             addSubview(view)
         }
     }
-    
-    private let pieces: [Piece] = DataManager.shared.pieces
     
     private func size(_ size: Size) -> CGSize {
         let w = CGFloat(size.w)
@@ -145,7 +105,6 @@ class PiecesView: UIView {
                 UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
                     view.frame = CGRect(origin: dest, size: view.bounds.size)
                 }) { (_) in
-                    
                 }
             }
         }

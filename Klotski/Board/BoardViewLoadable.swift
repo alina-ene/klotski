@@ -1,5 +1,5 @@
 //
-//  BoardLoadable.swift
+//  BoardViewLoadable.swift
 //  Klotski
 //
 //  Created by Alina Ene on 05/05/2019.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol BoardLoadable {
+protocol BoardViewLoadable {
     var playButtonTitle: String { get }
     var scenariosCount: Int { get }
-    var defaultScenario: Int { get }
+    var currentScenario: Int { get set }
     func updateBoard(buttonSelection scenario: String?)
     func tapPlayButton()
     var view: BoardViewLoading? { get set }

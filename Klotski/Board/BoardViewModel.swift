@@ -8,20 +8,20 @@
 
 import Foundation
 
-class BoardViewModel: BoardLoadable {
+class BoardViewModel: BoardViewLoadable {
     
     var view: BoardViewLoading?
-    var defaultScenario = 1
     var playButtonTitle = "Play"
     var scenariosCount = 4
+    var currentScenario = 1
     
     func updateBoard(buttonSelection scenario: String?) {
-        let index = Int(scenario ?? "1") ?? 1
-        DataManager.shared.scenario = index
-        view?.updateSelection(scenario: index)
+        currentScenario = Int(scenario ?? "1") ?? 1
+        resetScenario(currentScenario)
     }
     
     func tapPlayButton() {
+        resetScenario(currentScenario)
         view?.startPuzzle()
         DispatchQueue.main.async {
             Puzzle.shared.search { stateLayout in
@@ -29,5 +29,10 @@ class BoardViewModel: BoardLoadable {
                 self.view?.displayPermutations()
             }
         }
+    }
+    
+    private func resetScenario(_ scenario: Int) {
+        DataManager.shared.scenario = scenario
+        view?.updateSelection(scenario: scenario)
     }
 }

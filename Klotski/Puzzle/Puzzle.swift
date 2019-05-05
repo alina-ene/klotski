@@ -13,10 +13,8 @@ final class Puzzle {
     private var types: [[PieceType]] = Array(repeating: Array(repeating: .none, count: 4), count: 5)
     private var boards: [[Int]] = Array(repeating: Array(repeating: -1, count: 4), count: 5)
     private var layoutWasVisited: [String: Bool] = [:]
-    
     private var st: [String: Int] = [:]
     private var ts: [Int: String] = [:]
-    
     private var boardCodes: [Int: String] = [:]
     private var parents: [Int] = Array(repeating: 0, count: 30000)
     private var queue: [String] = []
@@ -41,7 +39,7 @@ final class Puzzle {
         let h = piece.size.h
         for i in y..<(y + h) {
             for j in x..<(x + w) {
-                if i < 5 && j < 4 {
+                if i < DataManager.boardHeight && j < DataManager.boardWidth {
                     types[i][j] = piece.type
                     boards[i][j] = piece.id
                 }
@@ -103,7 +101,6 @@ final class Puzzle {
                 c += 1
             }
         }
-        
     }
     
     private var didFinishTraversal: Bool {
@@ -265,7 +262,6 @@ final class Puzzle {
         encode()
         
         let stateCode = currentStateCodeFrom(code)
-        
         stringQueue.enqueue(stateCode)
         layoutWasVisited[stateCode] = true
         ts[layoutsVisitedCount] = stateCode
