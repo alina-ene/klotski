@@ -18,6 +18,8 @@
 		AC545415227E3DC500E90C36 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545414227E3DC500E90C36 /* Coordinates.swift */; };
 		AC545417227E3E2800E90C36 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545416227E3E2800E90C36 /* Size.swift */; };
 		AC545419227EE10D00E90C36 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545418227EE10D00E90C36 /* BoardViewModel.swift */; };
+		AC54541B227F473E00E90C36 /* BoardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54541A227F473E00E90C36 /* BoardLoadable.swift */; };
+		AC54541D227F477200E90C36 /* BoardViewLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54541C227F477200E90C36 /* BoardViewLoading.swift */; };
 		ACA717452278C4A800B706D5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA717442278C4A800B706D5 /* DataManager.swift */; };
 		ACA717472278C4DE00B706D5 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA717462278C4DE00B706D5 /* Piece.swift */; };
 		ACA717492278C5E200B706D5 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA717482278C5E200B706D5 /* LinkedList.swift */; };
@@ -40,6 +42,8 @@
 		AC545414227E3DC500E90C36 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		AC545416227E3E2800E90C36 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		AC545418227EE10D00E90C36 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
+		AC54541A227F473E00E90C36 /* BoardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardLoadable.swift; sourceTree = "<group>"; };
+		AC54541C227F477200E90C36 /* BoardViewLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewLoading.swift; sourceTree = "<group>"; };
 		ACA717442278C4A800B706D5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		ACA717462278C4DE00B706D5 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		ACA717482278C5E200B706D5 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
@@ -79,18 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				AC1F305F2277A72400903A12 /* AppDelegate.swift */,
-				AC1F30612277A72400903A12 /* BoardViewController.swift */,
-				AC545418227EE10D00E90C36 /* BoardViewModel.swift */,
-				ACA717442278C4A800B706D5 /* DataManager.swift */,
-				ACA717462278C4DE00B706D5 /* Piece.swift */,
-				AC545414227E3DC500E90C36 /* Coordinates.swift */,
-				AC545416227E3E2800E90C36 /* Size.swift */,
-				AC545412227E241B00E90C36 /* PieceType.swift */,
-				ACA717482278C5E200B706D5 /* LinkedList.swift */,
-				ACA7174A2278C66200B706D5 /* Queue.swift */,
-				ACA7174C2278C7B900B706D5 /* PiecesView.swift */,
-				ACA7174E2278C7F500B706D5 /* Puzzle.swift */,
-				AC54540E227E192400E90C36 /* Direction.swift */,
+				AC54541E227F47B200E90C36 /* Board */,
+				AC54541F227F47E500E90C36 /* Puzzle */,
 				AC545410227E215300E90C36 /* String+Subscripts.swift */,
 				AC1F30632277A72400903A12 /* Main.storyboard */,
 				AC1F30662277A72600903A12 /* Assets.xcassets */,
@@ -98,6 +92,42 @@
 				AC1F306B2277A72600903A12 /* Info.plist */,
 			);
 			path = Klotski;
+			sourceTree = "<group>";
+		};
+		AC54541E227F47B200E90C36 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				AC1F30612277A72400903A12 /* BoardViewController.swift */,
+				AC545418227EE10D00E90C36 /* BoardViewModel.swift */,
+				AC54541A227F473E00E90C36 /* BoardLoadable.swift */,
+				AC54541C227F477200E90C36 /* BoardViewLoading.swift */,
+				ACA7174C2278C7B900B706D5 /* PiecesView.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
+		AC54541F227F47E500E90C36 /* Puzzle */ = {
+			isa = PBXGroup;
+			children = (
+				ACA717442278C4A800B706D5 /* DataManager.swift */,
+				ACA7174E2278C7F500B706D5 /* Puzzle.swift */,
+				AC54540E227E192400E90C36 /* Direction.swift */,
+				ACA717482278C5E200B706D5 /* LinkedList.swift */,
+				ACA7174A2278C66200B706D5 /* Queue.swift */,
+				AC545420227F484100E90C36 /* Piece */,
+			);
+			path = Puzzle;
+			sourceTree = "<group>";
+		};
+		AC545420227F484100E90C36 /* Piece */ = {
+			isa = PBXGroup;
+			children = (
+				ACA717462278C4DE00B706D5 /* Piece.swift */,
+				AC545414227E3DC500E90C36 /* Coordinates.swift */,
+				AC545416227E3E2800E90C36 /* Size.swift */,
+				AC545412227E241B00E90C36 /* PieceType.swift */,
+			);
+			path = Piece;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,7 +201,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC54541B227F473E00E90C36 /* BoardLoadable.swift in Sources */,
 				AC545411227E215300E90C36 /* String+Subscripts.swift in Sources */,
+				AC54541D227F477200E90C36 /* BoardViewLoading.swift in Sources */,
 				ACA717472278C4DE00B706D5 /* Piece.swift in Sources */,
 				ACA7174B2278C66200B706D5 /* Queue.swift in Sources */,
 				AC545415227E3DC500E90C36 /* Coordinates.swift in Sources */,

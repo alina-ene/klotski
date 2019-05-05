@@ -14,15 +14,15 @@ final class Puzzle {
     private var boards: [[Int]] = Array(repeating: Array(repeating: -1, count: 4), count: 5)
     private var layoutWasVisited: [String: Bool] = [:]
     
-    var st: [String: Int] = [:]
-    var ts: [Int: String] = [:]
+    private var st: [String: Int] = [:]
+    private var ts: [Int: String] = [:]
     
-    var boardCodes: [Int: String] = [:]
-    var parents: [Int] = Array(repeating: 0, count: 30000)
-    var queue: [String] = []
-    var stringQueue = Queue<String>()
-    var layoutsVisitedCount: Int = 0
-    var code: String = ""
+    private var boardCodes: [Int: String] = [:]
+    private var parents: [Int] = Array(repeating: 0, count: 30000)
+    private var queue: [String] = []
+    private var stringQueue = Queue<String>()
+    private var layoutsVisitedCount: Int = 0
+    private var code: String = ""
     private var pieces: [Piece] = DataManager.shared.pieces
     var backtrackCoords: [[Coordinates]] = []
     
