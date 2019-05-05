@@ -37,7 +37,11 @@ class PiecesView: UIView {
     private lazy var square4View = UIView()
     
     private var viewsArray: [UIView] = []
-    private let pieces: [Piece] = DataManager.shared.pieces
+    var pieces: [Piece] = [] {
+        didSet {
+            updatePieces()
+        }
+    }
     
     func load() {
         bigPieceView.backgroundColor = .blue

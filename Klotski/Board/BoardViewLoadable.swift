@@ -15,4 +15,5 @@ protocol BoardViewLoadable {
     func updateBoard(buttonSelection scenario: String?)
     func tapPlayButton()
     var view: BoardViewLoading? { get set }
+    var pieces: [Piece] { get }
 }

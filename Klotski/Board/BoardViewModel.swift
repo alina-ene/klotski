@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BoardViewModel: BoardViewLoadable {
+class BoardViewModel: BoardViewLoadable, DataManagerInjector {
     
     var view: BoardViewLoading?
     var playButtonTitle = "Play"
@@ -32,7 +32,11 @@ class BoardViewModel: BoardViewLoadable {
     }
     
     private func resetScenario(_ scenario: Int) {
-        DataManager.shared.scenario = scenario
+        dataManager.scenario = scenario
         view?.updateSelection(scenario: scenario)
+    }
+    
+    var pieces: [Piece] {
+        return dataManager.pieces
     }
 }

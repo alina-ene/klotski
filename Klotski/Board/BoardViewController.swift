@@ -20,6 +20,7 @@ class BoardViewController: UIViewController {
         super.viewDidLoad()
         
         piecesView.load()
+        piecesView.pieces = viewModel.pieces
         piecesView.delegate = self
         loadControlPanel()
         activityIndicatorView.backgroundColor = UIColor.gray.withAlphaComponent(0.4)

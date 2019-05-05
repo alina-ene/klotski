@@ -7,7 +7,7 @@
 //
 import Foundation
 
-final class Puzzle {
+final class Puzzle: DataManagerInjector {
     static let shared = Puzzle()
     
     private var types: [[PieceType]] = Array(repeating: Array(repeating: .none, count: 4), count: 5)
@@ -21,12 +21,12 @@ final class Puzzle {
     private var stringQueue = Queue<String>()
     private var layoutsVisitedCount: Int = 0
     private var code: String = ""
-    private var pieces: [Piece] = DataManager.shared.pieces
+    private var pieces: [Piece] = []
     var backtrackCoords: [[Coordinates]] = []
     
     func initBoard() {
         code = ""
-        pieces = DataManager.shared.pieces
+        pieces = dataManager.pieces
         for piece in pieces {
             setCoordinates(piece: piece)
         }

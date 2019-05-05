@@ -98,9 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				AC1F30612277A72400903A12 /* BoardViewController.swift */,
+				AC54541C227F477200E90C36 /* BoardViewLoading.swift */,
 				AC545418227EE10D00E90C36 /* BoardViewModel.swift */,
 				AC54541A227F473E00E90C36 /* BoardViewLoadable.swift */,
-				AC54541C227F477200E90C36 /* BoardViewLoading.swift */,
 				ACA7174C2278C7B900B706D5 /* PiecesView.swift */,
 			);
 			path = Board;
