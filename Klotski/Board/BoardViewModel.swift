@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoardViewModel: BoardViewLoadable, DataManagerInjector, PuzzleInjector {
+class BoardViewModel: BoardViewLoadable {
     var boardState: BoardState = .before {
         didSet {
             view?.updateStateLabel()
@@ -18,21 +18,27 @@ class BoardViewModel: BoardViewLoadable, DataManagerInjector, PuzzleInjector {
     var stateLabelTitle: String {
         switch boardState {
         case .before:
-            return "Press Play to start"
+            return "Tap \(playButtonTitle) to start"
         case .calculating:
             return "Calculating..."
         case .animating:
             return "Applying moves..."
         case .solved:
-            return "Solved!"
+            return "Solved! Tap \(playButtonTitle) to start again"
         }
     }
     
-    
     var view: BoardViewLoading?
-    var playButtonTitle = "Play"
+    var playButtonTitle = "PLAY"
     var scenariosCount = 4
     var currentScenario = 1
+    var piecesViewModel: PiecesViewLoadable
+    var puzzle: Puzzle
+    
+    init(puzzle: Puzzle) {
+        self.puzzle = puzzle
+        piecesViewModel = PiecesViewModel(dataManager: puzzle.dataManager)
+    }
     
     func updateBoard(buttonSelection scenario: String?) {
         boardState = .before
@@ -67,15 +73,8 @@ class BoardViewModel: BoardViewLoadable, DataManagerInjector, PuzzleInjector {
     }
     
     private func resetScenario(_ scenario: Int) {
-        dataManager.scenario = scenario
+        puzzle.dataManager.scenario = scenario
         view?.updateSelection(scenario: scenario)
     }
     
-    var pieces: [Piece] {
-        return dataManager.pieces
-    }
-    
-    var colours: [UIColor] {
-        return dataManager.colours
-    }
 }

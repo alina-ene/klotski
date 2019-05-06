@@ -7,19 +7,9 @@
 //
 import Foundation
 
-protocol PuzzleInjector {
-    var puzzle: Puzzle { get }
-}
-
-private let sharedPuzzle: Puzzle = Puzzle()
-
-extension PuzzleInjector {
-    var puzzle: Puzzle {
-        return sharedPuzzle
-    }
-}
-
-final class Puzzle: DataManagerInjector {
+final class Puzzle {
+    
+    let dataManager = DataManager()
     
     private var types: [[PieceType]] = Array(repeating: Array(repeating: .none, count: 4), count: 5)
     private var boards: [[Int]] = Array(repeating: Array(repeating: -1, count: 4), count: 5)
@@ -50,7 +40,7 @@ final class Puzzle: DataManagerInjector {
         let h = piece.size.h
         for i in y..<(y + h) {
             for j in x..<(x + w) {
-                if i < DataManager.boardHeight && j < DataManager.boardWidth {
+                if i < dataManager.boardHeight && j < dataManager.boardWidth {
                     types[i][j] = piece.type
                     boards[i][j] = piece.id
                 }
@@ -60,8 +50,8 @@ final class Puzzle: DataManagerInjector {
     
     func encode() {
         code = ""
-        for i in 0..<DataManager.boardHeight {
-            for j in 0..<DataManager.boardWidth {
+        for i in 0..<dataManager.boardHeight {
+            for j in 0..<dataManager.boardWidth {
                 code.append("\(types[i][j].rawValue)")
                 code.append(boards[i][j] < 0 ? "0" : "\(boards[i][j])")
             }
@@ -85,8 +75,8 @@ final class Puzzle: DataManagerInjector {
         
         var b = 0
         var c = 0
-        for i in 0..<DataManager.boardHeight {
-            for j in 0..<DataManager.boardWidth {
+        for i in 0..<dataManager.boardHeight {
+            for j in 0..<dataManager.boardWidth {
                 var size: Size?
                 switch stateCode[c] {
                 case "1":
@@ -224,7 +214,7 @@ final class Puzzle: DataManagerInjector {
         
         switch direction {
         case .down:
-            if y + h == DataManager.boardHeight {
+            if y + h == dataManager.boardHeight {
                 return false
             }
             if types[y + h][x] == .none && types[y + h][x + w - 1] == .none {
@@ -245,7 +235,7 @@ final class Puzzle: DataManagerInjector {
                 return true
             }
         case .right:
-            if x + w == DataManager.boardWidth {
+            if x + w == dataManager.boardWidth {
                 return false
             }
             if types[y][x + w] == .none && types[y + h - 1][x + w] == .none {

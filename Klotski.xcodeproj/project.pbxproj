@@ -12,6 +12,8 @@
 		AC1F30652277A72400903A12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC1F30632277A72400903A12 /* Main.storyboard */; };
 		AC1F30672277A72600903A12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC1F30662277A72600903A12 /* Assets.xcassets */; };
 		AC1F306A2277A72600903A12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC1F30682277A72600903A12 /* LaunchScreen.storyboard */; };
+		AC4F3C452280D9F800055D0D /* PiecesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F3C442280D9F800055D0D /* PiecesViewModel.swift */; };
+		AC4F3C472280DA2400055D0D /* PiecesViewLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F3C462280DA2400055D0D /* PiecesViewLoadable.swift */; };
 		AC54540F227E192400E90C36 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54540E227E192400E90C36 /* Direction.swift */; };
 		AC545411227E215300E90C36 /* String+Subscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545410227E215300E90C36 /* String+Subscripts.swift */; };
 		AC545413227E241B00E90C36 /* PieceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC545412227E241B00E90C36 /* PieceType.swift */; };
@@ -36,6 +38,8 @@
 		AC1F30662277A72600903A12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC1F30692277A72600903A12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC1F306B2277A72600903A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC4F3C442280D9F800055D0D /* PiecesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiecesViewModel.swift; sourceTree = "<group>"; };
+		AC4F3C462280DA2400055D0D /* PiecesViewLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiecesViewLoadable.swift; sourceTree = "<group>"; };
 		AC54540E227E192400E90C36 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		AC545410227E215300E90C36 /* String+Subscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscripts.swift"; sourceTree = "<group>"; };
 		AC545412227E241B00E90C36 /* PieceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceType.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				AC545418227EE10D00E90C36 /* BoardViewModel.swift */,
 				AC54541A227F473E00E90C36 /* BoardViewLoadable.swift */,
 				ACA7174C2278C7B900B706D5 /* PiecesView.swift */,
+				AC4F3C442280D9F800055D0D /* PiecesViewModel.swift */,
+				AC4F3C462280DA2400055D0D /* PiecesViewLoadable.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -210,9 +216,11 @@
 				AC1F30622277A72400903A12 /* BoardViewController.swift in Sources */,
 				ACA717492278C5E200B706D5 /* LinkedList.swift in Sources */,
 				ACA717452278C4A800B706D5 /* DataManager.swift in Sources */,
+				AC4F3C452280D9F800055D0D /* PiecesViewModel.swift in Sources */,
 				AC545413227E241B00E90C36 /* PieceType.swift in Sources */,
 				ACA7174F2278C7F500B706D5 /* Puzzle.swift in Sources */,
 				ACA7174D2278C7B900B706D5 /* PiecesView.swift in Sources */,
+				AC4F3C472280DA2400055D0D /* PiecesViewLoadable.swift in Sources */,
 				AC1F30602277A72400903A12 /* AppDelegate.swift in Sources */,
 				AC54540F227E192400E90C36 /* Direction.swift in Sources */,
 				AC545417227E3E2800E90C36 /* Size.swift in Sources */,

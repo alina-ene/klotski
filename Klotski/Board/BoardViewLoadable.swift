@@ -19,8 +19,7 @@ protocol BoardViewLoadable {
     func updateBoard(buttonSelection scenario: String?)
     func tapPlayButton()
     var view: BoardViewLoading? { get set }
-    var pieces: [Piece] { get }
-    var colours: [UIColor] { get }
     var stateLabelTitle: String { get }
     var boardState: BoardState { get set }
+    var piecesViewModel: PiecesViewLoadable { get set}
 }

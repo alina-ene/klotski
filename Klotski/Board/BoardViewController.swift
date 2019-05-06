@@ -20,7 +20,7 @@ class BoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        piecesView.load(pieces: viewModel.pieces, colours: viewModel.colours)
+        piecesView.viewModel = viewModel.piecesViewModel
         loadControlPanel()
         activityIndicatorView.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
         showLoading(false)
@@ -79,6 +79,12 @@ class BoardViewController: UIViewController {
             }
         }
     }
+    
+    private func highlightSelection(scenario: Int) {
+        if let button = buttonsStackView.subviews[scenario] as? UIButton {
+            button.setTitleColor(.black, for: .normal)
+        }
+    }
 }
 
 extension BoardViewController: BoardViewLoading {
@@ -98,9 +104,7 @@ extension BoardViewController: BoardViewLoading {
     func updateSelection(scenario: Int) {
         piecesView.updatePieces()
         resetButtonsUI()
-        if let button = buttonsStackView.subviews[scenario] as? UIButton {
-            button.setTitleColor(.black, for: .normal)
-        }
+        highlightSelection(scenario: scenario)
     }
     
     func startPuzzle() {

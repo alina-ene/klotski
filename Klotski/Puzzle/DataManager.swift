@@ -8,22 +8,10 @@
 
 import UIKit
 
-protocol DataManagerInjector {
-    var dataManager: DataManager { get }
-}
-
-private let sharedDataManager: DataManager = DataManager()
-
-extension DataManagerInjector {
-    var dataManager: DataManager {
-        return sharedDataManager
-    }
-}
-
 final class DataManager {
     
-    static let boardWidth = 4
-    static let boardHeight = 5
+    let boardWidth = 4
+    let boardHeight = 5
     
     static let c10 = Coordinates(x: 1, y: 0)
     static let c12 = Coordinates(x: 1, y: 2)

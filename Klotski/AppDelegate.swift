@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let boardViewModel = BoardViewModel()
+        let boardViewModel = BoardViewModel(puzzle: Puzzle())
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let boardViewController = storyboard.instantiateViewController(withIdentifier: String(describing: BoardViewController.self)) as! BoardViewController
         boardViewController.viewModel = boardViewModel
