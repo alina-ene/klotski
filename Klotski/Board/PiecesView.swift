@@ -11,7 +11,7 @@ protocol PiecesViewDelegate: class {
     func didFinishAnimation()
 }
 
-class PiecesView: UIView {
+class PiecesView: UIView, PuzzleInjector {
     
     weak var delegate: PiecesViewDelegate?
     private let sideMargin = CGFloat(40)
@@ -73,12 +73,12 @@ class PiecesView: UIView {
     }
     
     func performStep(_ index: Int) {
-        if index == Puzzle.shared.backtrackCoords.count || Puzzle.shared.backtrackCoords.isEmpty {
+        if index == puzzle.backtrackCoords.count || puzzle.backtrackCoords.isEmpty {
             delegate?.didFinishAnimation()
             return
         }
         
-        for (i, coord) in Puzzle.shared.backtrackCoords[index].enumerated() {
+        for (i, coord) in puzzle.backtrackCoords[index].enumerated() {
             pieces[i].coord = coord
         }
         for piece in pieces {

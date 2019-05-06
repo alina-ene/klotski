@@ -7,8 +7,19 @@
 //
 import Foundation
 
+protocol PuzzleInjector {
+    var puzzle: Puzzle { get }
+}
+
+private let sharedPuzzle: Puzzle = Puzzle()
+
+extension PuzzleInjector {
+    var puzzle: Puzzle {
+        return sharedPuzzle
+    }
+}
+
 final class Puzzle: DataManagerInjector {
-    static let shared = Puzzle()
     
     private var types: [[PieceType]] = Array(repeating: Array(repeating: .none, count: 4), count: 5)
     private var boards: [[Int]] = Array(repeating: Array(repeating: -1, count: 4), count: 5)

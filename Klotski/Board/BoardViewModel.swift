@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoardViewModel: BoardViewLoadable, DataManagerInjector {
+class BoardViewModel: BoardViewLoadable, DataManagerInjector, PuzzleInjector {
     
     var view: BoardViewLoading?
     var playButtonTitle = "Play"
@@ -24,8 +24,8 @@ class BoardViewModel: BoardViewLoadable, DataManagerInjector {
         resetScenario(currentScenario)
         view?.startPuzzle()
         DispatchQueue.main.async {
-            Puzzle.shared.search { stateLayout in
-                Puzzle.shared.recursivelyDecode(layout: stateLayout)
+            self.puzzle.search { stateLayout in
+                self.puzzle.recursivelyDecode(layout: stateLayout)
                 self.view?.displayPermutations()
             }
         }

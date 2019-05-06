@@ -12,14 +12,15 @@ protocol DataManagerInjector {
     var dataManager: DataManager { get }
 }
 
-private let sharedAppDataManager: DataManager = DataManager()
+private let sharedDataManager: DataManager = DataManager()
+
 extension DataManagerInjector {
     var dataManager: DataManager {
-        return sharedAppDataManager
+        return sharedDataManager
     }
 }
 
-class DataManager {
+final class DataManager {
     
     static let boardWidth = 4
     static let boardHeight = 5
