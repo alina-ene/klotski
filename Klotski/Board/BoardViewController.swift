@@ -13,6 +13,7 @@ class BoardViewController: UIViewController {
     @IBOutlet private var piecesView: PiecesView!
     @IBOutlet private var buttonsStackView: UIStackView!
     @IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private var stateLabel: UILabel!
     
     var viewModel: BoardViewLoadable!
     
@@ -81,6 +82,10 @@ class BoardViewController: UIViewController {
 }
 
 extension BoardViewController: BoardViewLoading {
+    
+    func updateStateLabel() {
+        stateLabel.text = viewModel.stateLabelTitle
+    }
     
     func animationHasEnded() {
         showLoading(false)

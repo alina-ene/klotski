@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum BoardState {
+    case before, calculating, animating, solved
+}
+
 protocol BoardViewLoadable {
     var playButtonTitle: String { get }
     var scenariosCount: Int { get }
@@ -17,4 +21,6 @@ protocol BoardViewLoadable {
     var view: BoardViewLoading? { get set }
     var pieces: [Piece] { get }
     var colours: [UIColor] { get }
+    var stateLabelTitle: String { get }
+    var boardState: BoardState { get set }
 }

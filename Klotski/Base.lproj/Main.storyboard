@@ -36,6 +36,15 @@
                                 <rect key="frame" x="0.0" y="110" width="1112" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xv-HT-3Tq">
+                                <rect key="frame" x="0.0" y="100" width="1112" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="BcD-F3-ihD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -46,9 +55,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="p3g-8E-6HB" secondAttribute="trailing" constant="20" id="Rjc-cU-1xr"/>
                             <constraint firstItem="jt3-uB-naj" firstAttribute="top" secondItem="p3g-8E-6HB" secondAttribute="bottom" constant="10" id="cYu-tO-3rU"/>
                             <constraint firstItem="p3g-8E-6HB" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leadingMargin" constant="20" id="dmR-if-dGR"/>
+                            <constraint firstItem="KoM-ue-1BR" firstAttribute="trailing" secondItem="2xv-HT-3Tq" secondAttribute="trailing" id="eVj-gO-20y"/>
+                            <constraint firstItem="2xv-HT-3Tq" firstAttribute="top" secondItem="p3g-8E-6HB" secondAttribute="bottom" id="kMB-40-wVW"/>
                             <constraint firstItem="KoM-ue-1BR" firstAttribute="trailing" secondItem="jt3-uB-naj" secondAttribute="trailing" id="pIU-MA-OXs"/>
                             <constraint firstAttribute="bottom" secondItem="wDN-vO-cYu" secondAttribute="bottom" id="uPY-a8-iVq"/>
                             <constraint firstItem="jt3-uB-naj" firstAttribute="leading" secondItem="KoM-ue-1BR" secondAttribute="leading" id="v4t-I5-BgK"/>
+                            <constraint firstItem="2xv-HT-3Tq" firstAttribute="leading" secondItem="KoM-ue-1BR" secondAttribute="leading" id="wBP-R4-Sog"/>
                             <constraint firstItem="wDN-vO-cYu" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="zyu-Ds-jLQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KoM-ue-1BR"/>
@@ -58,6 +70,7 @@
                         <outlet property="activityIndicatorView" destination="wDN-vO-cYu" id="uhi-kp-SRt"/>
                         <outlet property="buttonsStackView" destination="p3g-8E-6HB" id="hR0-be-14c"/>
                         <outlet property="piecesView" destination="jt3-uB-naj" id="EfD-2B-Zbc"/>
+                        <outlet property="stateLabel" destination="2xv-HT-3Tq" id="AUV-Xm-EXD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

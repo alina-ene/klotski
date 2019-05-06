@@ -13,4 +13,5 @@ protocol BoardViewLoading {
     func startPuzzle()
     func animationHasEnded()
     func updateBoard(coordinates: [Coordinates])
+    func updateStateLabel()
 }
