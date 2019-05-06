@@ -20,26 +20,16 @@ class PiecesView: UIView {
         return availableWidth < availableHeight ? availableWidth/CGFloat(DataManager.boardWidth) : availableHeight/CGFloat(DataManager.boardHeight)
     }
     
-    private lazy var bigPieceView = UIView()
-    private lazy var horizontalView = UIView()
-    private lazy var vertical2View = UIView()
-    private lazy var vertical3View = UIView()
-    private lazy var vertical4View = UIView()
-    private lazy var vertical1View = UIView()
-    private lazy var square1View = UIView()
-    private lazy var square2View = UIView()
-    private lazy var square3View = UIView()
-    private lazy var square4View = UIView()
-    
     private var views: [UIView] = []
     private var pieces: [Piece] = [] 
     
     func load(pieces: [Piece], colours: [UIColor]) {
         self.pieces = pieces
-        
-        views = [vertical1View, bigPieceView, vertical2View, vertical3View, horizontalView, square1View, square2View, vertical4View, square3View, square4View]
-        for (index, view) in views.enumerated() {
-            view.backgroundColor = colours[index]
+        views = []
+        for colour in colours {
+            let view = UIView()
+            view.backgroundColor = colour
+            views.append(view)
             addSubview(view)
         }
     }
@@ -55,16 +45,9 @@ class PiecesView: UIView {
     }
     
     func updatePieces() {
-        bigPieceView.frame = frame(piece: pieces[0])
-        horizontalView.frame = frame(piece: pieces[1])
-        vertical2View.frame = frame(piece: pieces[5])
-        vertical3View.frame = frame(piece: pieces[4])
-        vertical4View.frame = frame(piece: pieces[3])
-        vertical1View.frame = frame(piece: pieces[2])
-        square1View.frame = frame(piece: pieces[6])
-        square2View.frame = frame(piece: pieces[7])
-        square3View.frame = frame(piece: pieces[8])
-        square4View.frame = frame(piece: pieces[9])
+        for piece in pieces {
+            views[piece.id].frame = frame(piece: piece)
+        }
     }
     
     var coordinates: [Coordinates]? {
