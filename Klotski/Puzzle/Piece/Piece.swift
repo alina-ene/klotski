@@ -8,8 +8,8 @@
 
 class Piece {
     
-    var coord: Coordinates = DataManager.cNone
-    var size: Size = DataManager.size00
+    var coord: Coordinates
+    var size: Size
     var id: Int
     
     var type: PieceType {
@@ -27,9 +27,10 @@ class Piece {
         }
     }
     
-    init(id: Int, size: Size) {
+    init(id: Int, size: Size, coord: Coordinates) {
         self.size = size
         self.id = id
+        self.coord = coord
     }
     
 }

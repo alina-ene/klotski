@@ -80,22 +80,21 @@ final class Puzzle {
                 var size: Size?
                 switch stateCode[c] {
                 case "1":
-                    size = DataManager.size11
+                    size = dataManager.size11
                 case "2":
-                    size = DataManager.size12
+                    size = dataManager.size12
                     stateCode = stateCode.replaceString(at: c + 4, with: "@")
                 case "3":
-                    size = DataManager.size21
+                    size = dataManager.size21
                     stateCode = stateCode.replaceString(at: c + 1, with: "@")
                 case "4":
-                    size = DataManager.size22
+                    size = dataManager.size22
                     stateCode = stateCode.replaceString(at: c + 1, with: "@").replaceString(at: c + 4, with: "@").replaceString(at: c + 5, with: "@")
                 default:
                     break
                 }
                 if let s = size {
-                    pieces[b] = Piece(id: Int(string[2 * c + 1])!, size: s)
-                    pieces[b].coord = Coordinates(x: j, y: i)
+                    pieces[b] = Piece(id: Int(string[2 * c + 1])!, size: s, coord: Coordinates(x: j, y: i))
                     setCoordinates(piece: pieces[b])
                     b += 1
                 }
@@ -298,11 +297,11 @@ final class Puzzle {
     }
     
     private func decode(string: String) {
-        var fooArr = Array(repeating: DataManager.cNone, count: 10)
+        var fooArr = Array(repeating: dataManager.cNone, count: 10)
         for index in 0..<string.count {
             if index % 2 == 0 {
                 let cursor = Int(string[index + 1])!
-                if string[index] != "0" && fooArr[cursor] == DataManager.cNone {
+                if string[index] != "0" && fooArr[cursor] == dataManager.cNone {
                     let x = (index / 2) % 4
                     fooArr[cursor] = Coordinates(x: x, y: (index / 2 - x) / 4)
                 }
