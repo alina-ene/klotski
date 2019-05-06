@@ -11,5 +11,6 @@ import Foundation
 protocol BoardViewLoading {
     func updateSelection(scenario: Int)
     func startPuzzle()
-    func displayPermutations()
+    func animationHasEnded()
+    func updateBoard(coordinates: [Coordinates])
 }

@@ -20,7 +20,6 @@ class BoardViewController: UIViewController {
         super.viewDidLoad()
         
         piecesView.load(pieces: viewModel.pieces, colours: viewModel.colours)
-        piecesView.delegate = self
         loadControlPanel()
         activityIndicatorView.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
         showLoading(false)
@@ -81,14 +80,15 @@ class BoardViewController: UIViewController {
     }
 }
 
-extension BoardViewController: PiecesViewDelegate {
+extension BoardViewController: BoardViewLoading {
     
-    func didFinishAnimation() {
+    func animationHasEnded() {
         showLoading(false)
     }
-}
-
-extension BoardViewController: BoardViewLoading {
+    
+    func updateBoard(coordinates: [Coordinates]) {
+        piecesView.coordinates = coordinates
+    }
     
     func updateSelection(scenario: Int) {
         piecesView.updatePieces()
@@ -101,8 +101,5 @@ extension BoardViewController: BoardViewLoading {
     func startPuzzle() {
         showLoading(true)
     }
-    
-    func displayPermutations() {
-        piecesView.performStep(0)
-    }
+
 }

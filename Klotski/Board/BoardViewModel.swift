@@ -26,8 +26,20 @@ class BoardViewModel: BoardViewLoadable, DataManagerInjector, PuzzleInjector {
         DispatchQueue.main.async {
             self.puzzle.search { stateLayout in
                 self.puzzle.recursivelyDecode(layout: stateLayout)
-                self.view?.displayPermutations()
+                self.performStep(0)
             }
+        }
+    }
+    
+    private func performStep(_ index: Int) {
+        if index == puzzle.backtrackCoords.count || puzzle.backtrackCoords.isEmpty {
+            view?.animationHasEnded()
+            return
+        }
+        view?.updateBoard(coordinates: puzzle.backtrackCoords[index])
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.performStep(index + 1)
         }
     }
     

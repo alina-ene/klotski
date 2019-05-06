@@ -7,13 +7,8 @@
 //
 import UIKit
 
-protocol PiecesViewDelegate: class {
-    func didFinishAnimation()
-}
-
-class PiecesView: UIView, PuzzleInjector {
+class PiecesView: UIView {
     
-    weak var delegate: PiecesViewDelegate?
     private let sideMargin = CGFloat(40)
     private var availableWidth: CGFloat {
         return UIScreen.main.bounds.width - 2 * sideMargin
@@ -24,7 +19,7 @@ class PiecesView: UIView, PuzzleInjector {
     private var unit: CGFloat {
         return availableWidth < availableHeight ? availableWidth/CGFloat(DataManager.boardWidth) : availableHeight/CGFloat(DataManager.boardHeight)
     }
-
+    
     private lazy var bigPieceView = UIView()
     private lazy var horizontalView = UIView()
     private lazy var vertical2View = UIView()
@@ -72,21 +67,18 @@ class PiecesView: UIView, PuzzleInjector {
         square4View.frame = frame(piece: pieces[9])
     }
     
-    func performStep(_ index: Int) {
-        if index == puzzle.backtrackCoords.count || puzzle.backtrackCoords.isEmpty {
-            delegate?.didFinishAnimation()
-            return
-        }
-        
-        for (i, coord) in puzzle.backtrackCoords[index].enumerated() {
-            pieces[i].coord = coord
-        }
-        for piece in pieces {
-            print(piece.coord, terminator: ", ")
-        }
-        displayAnimations()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            self.performStep(index + 1)
+    var coordinates: [Coordinates]? {
+        didSet {
+            if let coords = coordinates {
+                
+                for (i, coord) in coords.enumerated() {
+                    pieces[i].coord = coord
+                }
+                for piece in pieces {
+                    print(piece.coord, terminator: ", ")
+                }
+                displayAnimations()
+            }
         }
     }
     
