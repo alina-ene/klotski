@@ -23,7 +23,7 @@ class BoardViewController: UIViewController {
         piecesView.viewModel = viewModel.piecesViewModel
         loadControlPanel()
         activityIndicatorView.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
-        showLoading(false)
+        loadingIsShown = false
     }
     
     private func loadControlPanel() {
@@ -53,13 +53,16 @@ class BoardViewController: UIViewController {
         viewModel.tapPlayButton()
     }
     
-    private func showLoading(_ show: Bool = true) {
-        if show {
-            view.bringSubviewToFront(activityIndicatorView)
-            activityIndicatorView.startAnimating()
-        } else {
-            view.sendSubviewToBack(activityIndicatorView)
-            activityIndicatorView.stopAnimating()
+    private var loadingIsShown = true {
+        willSet {
+            switch newValue {
+            case true:
+                view.bringSubviewToFront(activityIndicatorView)
+                activityIndicatorView.startAnimating()
+            case false:
+                view.sendSubviewToBack(activityIndicatorView)
+                activityIndicatorView.stopAnimating()
+            }
         }
     }
     
@@ -94,7 +97,7 @@ extension BoardViewController: BoardViewLoading {
     }
     
     func animationHasEnded() {
-        showLoading(false)
+        loadingIsShown = false
     }
     
     func updateBoard(coordinates: [Coordinates]) {
@@ -108,7 +111,7 @@ extension BoardViewController: BoardViewLoading {
     }
     
     func startPuzzle() {
-        showLoading(true)
+        loadingIsShown = true
     }
 
 }
