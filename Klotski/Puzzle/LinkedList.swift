@@ -7,21 +7,22 @@
 //
 
 import Foundation
-public struct LinkedList<T>: CustomStringConvertible {
+
+struct LinkedList<T>: CustomStringConvertible {
     private var head: Node<T>?
     private var tail: Node<T>?
     
-    public init() { }
+    init() { }
     
-    public var isEmpty: Bool {
+    var isEmpty: Bool {
         return head == nil
     }
     
-    public var first: Node<T>? {
+    var first: Node<T>? {
         return head
     }
     
-    public mutating func append(_ value: T) {
+    mutating func append(_ value: T) {
         let newNode = Node(value: value)
         if let tailNode = tail {
             newNode.previous = tailNode
@@ -32,7 +33,7 @@ public struct LinkedList<T>: CustomStringConvertible {
         tail = newNode
     }
     
-    public mutating func remove(_ node: Node<T>) -> T {
+    mutating func remove(_ node: Node<T>) -> T {
         let prev = node.previous
         let next = node.next
         
@@ -53,7 +54,7 @@ public struct LinkedList<T>: CustomStringConvertible {
         return node.value
     }
     
-    public var description: String {
+    var description: String {
         var text = "["
         var node = head
         
@@ -66,12 +67,12 @@ public struct LinkedList<T>: CustomStringConvertible {
     }
 }
 
-public class Node<T> {
-    public var value: T
-    public var next: Node<T>?
-    public var previous: Node<T>?
+class Node<T> {
+    var value: T
+    var next: Node<T>?
+    var previous: Node<T>?
     
-    public init(value: T) {
+    init(value: T) {
         self.value = value
     }
 }

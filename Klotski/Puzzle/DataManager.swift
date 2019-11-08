@@ -40,7 +40,7 @@ final class DataManager {
     var scenarios: [[Coordinates]]
     private(set) var pieces: [Piece]
     
-    var scenario: Int = 1 {
+    var scenario = 1 {
         didSet {
             for index in 0...9 {
                 pieces[index].coord = scenarios[scenario-1][index]

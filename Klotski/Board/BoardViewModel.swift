@@ -50,12 +50,10 @@ class BoardViewModel: BoardViewLoadable {
         resetScenario(currentScenario)
         boardState = .calculating
         view?.startPuzzle()
-        DispatchQueue.main.async {
-            self.puzzle.search { stateLayout in
-                self.puzzle.recursivelyDecode(layout: stateLayout)
-                self.boardState = .animating
-                self.performStep(0)
-            }
+        puzzle.search { stateLayout in
+            self.puzzle.recursivelyDecode(layout: stateLayout)
+            self.boardState = .animating
+            self.performStep(0)
         }
     }
     
@@ -66,7 +64,7 @@ class BoardViewModel: BoardViewLoadable {
             return
         }
         view?.updateBoard(coordinates: puzzle.backtrackCoords[index])
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.performStep(index + 1)
         }
