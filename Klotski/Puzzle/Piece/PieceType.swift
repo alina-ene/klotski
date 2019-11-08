@@ -9,9 +9,9 @@
 import Foundation
 
 enum PieceType: Int {
-    case none = 0
-    case tinySquare = 1
-    case vertical = 2
-    case horizontal = 3
-    case bigSquare = 4
+    case none 
+    case tinySquare
+    case vertical
+    case horizontal
+    case bigSquare
 }
