@@ -50,10 +50,14 @@ class BoardViewModel: BoardViewLoadable {
         resetScenario(currentScenario)
         boardState = .calculating
         view?.startPuzzle()
-        puzzle.search { stateLayout in
-            self.puzzle.recursivelyDecode(layout: stateLayout)
-            self.boardState = .animating
-            self.performStep(0)
+        DispatchQueue.global(qos: .background).async {
+            self.puzzle.search { stateLayout in
+                DispatchQueue.main.async {
+                    self.puzzle.recursivelyDecode(layout: stateLayout)
+                    self.boardState = .animating
+                    self.performStep(0)
+                }
+            }
         }
     }
     
